@@ -1,0 +1,23 @@
+#include<iostream.h>
+#include<conio.h>
+#include<iomanip.h>
+ostream& user(ostream& output)
+ {
+  output<<setw(80)<<setfill('-')<<"This is a user defined manipulator!!!";
+  return output;
+ }
+class manip
+{
+ public:
+ void show()
+ {
+  cout<<user;
+ }
+};
+void main()
+{
+ clrscr();
+ manip m;
+ m.show();
+ getch();
+}

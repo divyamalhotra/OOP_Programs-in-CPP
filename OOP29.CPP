@@ -1,0 +1,53 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<iomanip.h>
+class item
+{
+ char name[20],code[5];
+ float cost;
+ public:
+ void get()
+ {
+  cout<<"\nEnter item name: ";
+  gets(name);
+  cout<<"Enter item code: ";
+  cin>>code;
+  cout<<"Enter item cost: ";
+  cin>>cost;
+ }
+ void show()
+ {
+  cout<<endl<<setw(45)<<"Item List"<<endl<<endl;
+  cout<<"Item Name"<<setw(30)<<"Item Code"<<setw(30)<<"Item Cost"<<endl;
+ }
+ void showitem()
+ {
+  cout<<setiosflags(ios::left)<<setw(30)<<name<<setw(30)<<code<<cost<<endl;
+ }
+};
+void main()
+{
+ clrscr();
+ item i;
+ char c;
+ ofstream out("item.txt",ios::binary);
+ do
+ {
+  cout<<"Enter details of the item: ";
+  i.get();
+  out.write((char*)&i,sizeof(i));
+  cout<<"Do you want to add more item? y or n-";
+  cin>>c;
+ }while(c=='y'||c=='Y');
+ out.close();
+ ifstream in("item.txt");
+ i.show();
+ in.read((char*)&i,sizeof(i));
+ while(in.eof()==0)
+ {
+  i.showitem();
+  in.read((char*)&i,sizeof(i));
+ }
+ getch();
+}

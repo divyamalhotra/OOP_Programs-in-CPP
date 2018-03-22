@@ -1,0 +1,63 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+#include<stdio.h>
+class A
+{
+int a;
+public:
+int b;
+char name[20];
+void getdata(int aa,int bb,char*nn)
+{
+a=aa;
+b=bb;
+strcpy(name,nn);
+}
+int A_private()
+{
+return a;
+}
+void show_A_private()
+{
+cout<<"\nThe value of private member of class A,a is:  "<<a;
+}
+};
+class B:public A
+{
+int c;
+public:
+void add();
+void display();
+};
+void B::add()
+{
+c=b+A_private();
+}
+void B::display()
+{
+show_A_private();
+cout<<endl;
+cout<<"The value of b is: "<<b<<endl;
+cout<<"The value of c is: "<<c<<endl;
+cout<<"The name is: ";
+puts(name);
+cout<<endl;
+}
+void main()
+{
+clrscr();
+int a,b,c;
+char s[20];
+B b1;
+cout<<"Enter the value of a:";
+cin>>a;
+cout<<"Enter the value of b:";
+cin>>b;
+cout<<"Enter your name: ";
+gets(s);
+b1.getdata(a,b,s);
+b1.add();
+b1.display();
+getch();
+}
